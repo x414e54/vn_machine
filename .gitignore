@@ -1,0 +1,3 @@
+# Ignore all AI model weights and artifacts
+models/
+models/*
