@@ -1,3 +1,33 @@
-# Ignore all AI model weights and artifacts
+# --- Build system junk ---
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ninja builds (if you ever use it)
+build.ninja
+.ninja_deps
+.ninja_log
+
+# --- Emscripten / emsdk ---
+emsdk/
+emsdk_env.sh
+.cache/emscripten/
+
+# --- Local AI model weights ---
 models/
 models/*
+
+# --- VS Code workspace ---
+.vscode/
+
+# --- WASM build outputs ---
+*.wasm
+*.js
+*.html
+*.data
+
+# --- General temp files ---
+*.tmp
+*.log
+*.bak
