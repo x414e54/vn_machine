@@ -1,13 +1,13 @@
 README.md — Visual Novel Engine with LLM‑Driven Transitions
 Overview
-This project implements a Visual Novel Engine in Rust using Bevy, with an integrated LLM inference loop.
+This project implements a Visual Novel Engine in C, with an integrated LLM inference loop.
 The LLM receives a predefined context prompt and the current VN state, then outputs exactly one transition code.
 The VN engine validates this transition and updates the scene accordingly.
 
 Architecture
 The system consists of three major components:
 
-LLM Inference Layer (Rust)
+LLM Inference Layer (C)
 
 Loads a local GGUF model (e.g., Gemma 3 1B).
 
@@ -97,7 +97,7 @@ player text input overlay (256 chars max)
 Goal
 QwenCode 3.6 35B should generate:
 
-Rust code for:
+C code for:
 
 GGUF model loading
 
