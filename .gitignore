@@ -22,10 +22,6 @@ models/*
 .vscode/
 
 # --- WASM build outputs ---
-*.wasm
-*.js
-*.html
-*.data
 
 # --- General temp files ---
 *.tmp

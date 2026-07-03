@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+
+        #sidebar {
+            width: 240px;
+            background: #222;
+            color: #eee;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        #sidebar h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        #sidebar button {
+            width: 100%;
+            margin: 6px 0;
+            padding: 10px;
+            background: #444;
+            color: #eee;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        #sidebar button:hover {
+            background: #555;
+        }
+
+        #main {
+            flex: 1;
+            background: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #panel-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #panel-content {
+            background: #fff;
+            border: 1px solid #ccc;
+            height: calc(100% - 40px);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="sidebar">
+        <h2>Game Editor</h2>
+        <button onclick="openPanel('Story Editor')">Story Editor</button>
+        <button onclick="openPanel('Scene Graph')">Scene Graph</button>
+        <button onclick="openPanel('Assets')">Assets</button>
+        <button onclick="openPanel('Pipelines')">Pipelines</button>
+        <button onclick="openPanel('State Machines')">State Machines</button>
+
+        <h2 style="margin-top: 20px;">Hardware Editor</h2>
+        <button onclick="openPanel('VHDL Editor')">VHDL Editor</button>
+        <button onclick="openPanel('RTL Personality')">RTL Personality</button>
+        <button onclick="openPanel('Machine Config')">Machine Config</button>
+        <button onclick="openPanel('Hardware Revision AI')">Hardware Revision AI</button>
+    </div>
+
+    <div id="main">
+        <div id="panel-title">Select a tool from the left</div>
+        <div id="panel-content">
+            <!-- Stub content area -->
+            Nothing loaded yet.
+        </div>
+    </div>
+
+    <script>
+        function openPanel(name) {
+            document.getElementById('panel-title').innerText = name;
+            document.getElementById('panel-content').innerHTML =
+                `<p>This is a stub for the <strong>${name}</strong>.</p>
+                 <p>Here you will later embed the real tool UI.</p>`;
+        }
+    </script>
+
+</body>
+</html>

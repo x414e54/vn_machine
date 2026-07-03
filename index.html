@@ -2,56 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Virtual Console</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Virtual Console + Editor</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #editor {
+            flex: 1;
+            border: none;
+        }
+        #console {
+            flex: 1;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-    <canvas id="screen" width="640" height="360"></canvas>
 
-    <div id="controls">
-        <div class="panel">
-            <h2>Power</h2>
-            <button class="power-on" onclick="consolePowerOn()">Power On</button>
-            <button class="power-off" onclick="consolePowerOff()">Power Off</button>
-            <button class="reset" onclick="consoleReset()">Reset</button>
-        </div>
+    <!-- Producer World (AI + JS + Cloud) -->
+    <iframe id="editor" src="editor.html"></iframe>
 
-        <div class="panel">
-            <h2>D‑Pad</h2>
-            <div class="dpad">
-                <div class="empty"></div>
-                <button onclick="sendInput('UP')">▲</button>
-                <div class="empty"></div>
+    <!-- Consumer World (Deterministic WASM Console) -->
+    <iframe id="console" src="virtualconsole.html"></iframe>
 
-                <button onclick="sendInput('LEFT')">◀</button>
-                <div class="empty"></div>
-                <button onclick="sendInput('RIGHT')">▶</button>
-
-                <div class="empty"></div>
-                <button onclick="sendInput('DOWN')">▼</button>
-                <div class="empty"></div>
-            </div>
-        </div>
-
-        <div class="panel">
-            <h2>Buttons</h2>
-            <div class="abxy">
-                <button class="y" onclick="sendInput('Y')">Y</button>
-                <button class="x" onclick="sendInput('X')">X</button>
-                <button class="b" onclick="sendInput('B')">B</button>
-                <button class="a" onclick="sendInput('A')">A</button>
-            </div>
-            <div class="system-buttons">
-                <button onclick="sendInput('START')">Start</button>
-                <button onclick="sendInput('SELECT')">Select</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="log"></div>
-
-    <!-- Emscripten-generated loader (console.js) -->
-    <script src="console.js"></script>
-    <script src="bridge.js"></script>
 </body>
 </html>
