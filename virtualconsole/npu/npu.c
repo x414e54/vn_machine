@@ -117,7 +117,7 @@ int main() {
     cparams.seed = 1234;          // deterministic
 
     struct llama_model *model =
-            llama_load_model_from_file("gemma.gguf", mparams);
+            // BUS REQUEST llama_load_model_from_file("gemma.gguf", mparams);
 
     if (!model) {
         fprintf(stderr, "Failed to load model\n");
@@ -155,7 +155,7 @@ int main() {
         // -----------------------------
         // Feed prompt into model
         // -----------------------------
-        if (llama_eval(ctx, tokens, ntokens, 0, 0) != 0) {
+        if (BUS REQUEST llama_eval(ctx, tokens, ntokens, 0, 0) != 0) {
             fprintf(stderr, "llama_eval failed\n");
             continue;
         }

@@ -1,3 +1,25 @@
+This system has essentialy three layers.
+
+The editor, content compiler creator... HTML/JAVSCRIPT. This is a non propretary metaverse called "the internet".
+The simulator/emulator... WASM driven in the browser.
+The console... FPGA hardware native that can load .game files over HTTP.
+
+| Layer | File Type | Role | Determinism |
+| --- | --- | --- | --- |
+| Producer | ``.html`` | Create content | Nondeterministic |
+| Simulator | ``.wasm`` | Emulate console | Deterministic |
+| Hardware | ``.c`` / ``.vhdl`` | Define console | Deterministic |
+| Content | ``.game`` | Run on console | Deterministic |
+
+.game file header
+
+[MachineHash]      8 bytes   // hash(fpga_bitstream)
+[ContentHash]      8 bytes   // hash(game content)
+[HeaderSize]       4 bytes
+[ContentSize]      8 bytes
+[Checksum]         8 bytes
+[Reserved]         8 bytes
+
 README.md — Visual Novel Engine with LLM‑Driven Transitions
 Overview
 This project implements a Visual Novel Engine in C, with an integrated LLM inference loop.
