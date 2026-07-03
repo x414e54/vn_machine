@@ -1,3 +1,6 @@
 [submodule "servers/npu/llama"]
 	path = servers/npu/llama
 	url = https://github.com/ggml-org/llama.cpp
+[submodule "virtualconsole/npu/llama.cpp"]
+	path = virtualconsole/npu/llama.cpp
+	url = https://github.com/ggml-org/llama.cpp
