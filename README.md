@@ -20,6 +20,9 @@ The console... FPGA hardware native that can load .game files over HTTP.
 [Checksum]         8 bytes
 [Reserved]         8 bytes
 
+.game files must not contain .rtl and it is forbidden to reconfigure the machine via a .game file.
+The pairing of .game and .rtl where the .game file contains a hash of the .rtl but not the .rtl itself means that it doesnt become a recusive VM mess. It protects security and sandboxing.
+
 README.md — Visual Novel Engine with LLM‑Driven Transitions
 Overview
 This project implements a Visual Novel Engine in C, with an integrated LLM inference loop.
