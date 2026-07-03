@@ -2,6 +2,7 @@
     "type": "game",
     "formatVersion": 1,
     "name": "MyGame",
+    "hardwareProject": "../myhardware.world/",
     "description": "A deterministic story capsule for the Virtual Console.",
     
     "paths": {
