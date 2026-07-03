@@ -1,0 +1,73 @@
+┌──────────────────────────────────────────────────────────────┐
+│                        HTML                   │
+│                                                              │
+│  Index                                                 │
+│    ├── SurfaceView / Compose (Rendering)                      │
+│    ├── AudioTrack / SoundPool (Audio)                         │
+│    └── Controller Input (Touch / Gamepad)                     │
+│                                                              │
+│  Bridge                                                          │
+│    ├── power_switch()                                         │
+│    ├── reset_button()                                         │
+│    └── bus_send_input(buttonId)                               │
+└──────────────────────────────────────────────────────────────┘
+│
+▼ JS boundary
+┌──────────────────────────────────────────────────────────────┐
+│                        MACHINE.C (Supervisor)                │
+│                                                              │
+│  power_switch():                                              │
+│      - spawn BusThread                                        │
+│      - spawn FPGAThread                                       │
+│      - spawn NPUThread                                        │
+│                                                              │
+│  reset_switch():                                              │
+│      - stop threads                                           │
+│      - reinitialize contexts                                  │
+│                                                              │
+│  watchdog logic (per-thread health checks)                   │
+│      - FPGA watchdog                                          │
+│      - NPU watchdog                                           │
+│      - restart threads if needed                              │
+└──────────────────────────────────────────────────────────────┘
+│
+▼
+┌──────────────────────────────────────────────────────────────┐
+│                           BUS.C (Router)                     │
+│                                                              │
+│  Responsibilities:                                            │
+│      - route messages between FPGA and NPU                    │
+│      - route input from JS → FPGA                            │
+│      - route frame state from FPGA → JS                   │
+│                                                              │
+│  NO watchdogs                                                 │
+│  NO supervision                                               │
+│  NO timing logic                                              │
+│                                                              │
+│  Pure message passing:                                        │
+│      FPGA → Bus → NPU                                         │
+│      NPU → Bus → FPGA                                         │
+│      UI → Bus → FPGA                                          │
+│      FPGA → Bus → UI                                          │
+└──────────────────────────────────────────────────────────────┘
+│
+├───────────────────────────────┐
+│                               │
+▼                               ▼
+┌────────────────────────────────┐   ┌──────────────────────────┐
+│          FPGA.C (VN ASIC)      │   │        NPU.C (LLM Chip)  │
+│                                │   │                          │
+│  Deterministic clock           │   │  Asynchronous inference   │
+│  SoA data layout               │   │  llama.cpp single-token   │
+│                                │   │                          │
+│  Modules:                      │   │  Responsibilities:        │
+│    - sprite engine             │   │    - wait for request     │
+│    - glyph engine              │   │    - run inference        │
+│    - background engine         │   │    - return transition    │
+│    - audio scheduler           │   │    - self-watchdog        │
+│    - VN FSM                    │   │                          │
+│    - transition logic          │   │                          │
+│    - AI request builder        │   │                          │
+│                                │   │                          │
+│  Talks ONLY to Bus             │   │  Talks ONLY to Bus        │
+└────────────────────────────────┘   └──────────────────────────┘
