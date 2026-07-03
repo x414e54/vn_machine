@@ -1,0 +1,20 @@
+{
+    "type": "hardware",
+    "formatVersion": 1,
+    "name": "MyHardwarePersonality",
+    "description": "Hardware personality for the Virtual Console.",
+
+    "paths": {
+        "vhdl": "draft.vhdl",
+        "rtl": "personality.rtl",
+        "machineConfig": "machine.toml",
+        "signatures": "signatures/",
+        "validation": "validation/"
+    },
+
+    "hardware": {
+        "machineHash": "ABCD1234EF567890ABCD1234EF567890",
+        "version": "1.0.0",
+        "requiresSignature": true
+    }
+}

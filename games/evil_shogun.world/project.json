@@ -1,0 +1,20 @@
+{
+    "type": "game",
+    "formatVersion": 1,
+    "name": "MyGame",
+    "description": "A deterministic story capsule for the Virtual Console.",
+    
+    "paths": {
+        "story": "story.json",
+        "assets": "assets/",
+        "scenes": "scenes/",
+        "pipelines": "pipelines/",
+        "statemachines": "statemachines/",
+        "build": "build/"
+    },
+
+    "build": {
+        "output": "build/game.game",
+        "machineHash": "00000000000000000000000000000000"
+    }
+}

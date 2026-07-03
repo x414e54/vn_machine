@@ -23,6 +23,17 @@ The console... FPGA hardware native that can load .game files over HTTP.
 .game files must not contain .rtl and it is forbidden to reconfigure the machine via a .game file.
 The pairing of .game and .rtl where the .game file contains a hash of the .rtl but not the .rtl itself means that it doesnt become a recusive VM mess. It protects security and sandboxing.
 
+.rtl must be signed and validated through a web‑of‑trust.
+This preserves determinism, safety, and human control.
+AI can design hardware, but cannot deploy hardware.
+Humans remain the gatekeepers.
+
+.game files are scanned for .rtl before signing with the game signing key.
+.rtl files are scanned for content before sining with the rtl signing key.
+
+Content cannot contain hardware.
+Hardware cannot contain content.
+
 README.md — Visual Novel Engine with LLM‑Driven Transitions
 Overview
 This project implements a Visual Novel Engine in C, with an integrated LLM inference loop.
